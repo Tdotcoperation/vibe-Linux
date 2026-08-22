@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #f7f4f8;
+  background: #1d1725;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+button, input, textarea { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+
+.desktop-root {
+  --panel: rgba(28, 24, 32, .92);
+  --panel-2: rgba(44, 38, 48, .94);
+  --text: #f7f4f8;
+  --muted: #c8c0cc;
+  --border: rgba(255,255,255,.12);
+  --accent: #e95420;
+  color: var(--text);
+}
+.desktop-root.light {
+  --panel: rgba(247, 244, 248, .94);
+  --panel-2: rgba(255, 255, 255, .97);
+  --text: #241f28;
+  --muted: #675f6d;
+  --border: rgba(20,20,20,.14);
+  --accent: #d94b1c;
+}
+
+.wallpaper-a { background: radial-gradient(circle at 18% 18%, #6f355e 0, transparent 30%), radial-gradient(circle at 84% 68%, #d65a2c 0, transparent 28%), linear-gradient(135deg, #2a1536, #301723 52%, #140f1c); }
+.wallpaper-b { background: radial-gradient(circle at 20% 75%, #6a44a6 0, transparent 32%), radial-gradient(circle at 78% 18%, #d35078 0, transparent 26%), linear-gradient(135deg, #14172b, #231634); }
+.wallpaper-c { background: radial-gradient(circle at 66% 22%, #2c7b83 0, transparent 28%), radial-gradient(circle at 24% 78%, #4ca36e 0, transparent 30%), linear-gradient(135deg, #0e2727, #132b22); }
+.wallpaper-d { background: linear-gradient(135deg, #303030, #111 52%, #252525); }
+
+.window-shell {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel-2);
+  box-shadow: 0 24px 80px rgba(0,0,0,.42), 0 4px 14px rgba(0,0,0,.22);
+  animation: window-in .18s cubic-bezier(.2,.8,.2,1);
+  backdrop-filter: blur(24px);
+}
+.window-shell.maximized { border-radius: 0; }
+.window-titlebar {
+  height: 38px;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 0 12px;
+  user-select: none;
+  cursor: default;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--panel) 94%, transparent);
+}
+.window-content { min-height: 0; flex: 1; overflow: hidden; }
+.resize-handle { position: absolute; right: 0; bottom: 0; width: 18px; height: 18px; cursor: nwse-resize; }
+.resize-handle::after { content: ""; position: absolute; right: 4px; bottom: 4px; width: 8px; height: 8px; border-right: 2px solid rgba(255,255,255,.38); border-bottom: 2px solid rgba(255,255,255,.38); }
+
+.ubuntu-button { border: 1px solid var(--border); background: rgba(255,255,255,.07); transition: .14s ease; }
+.ubuntu-button:hover { background: rgba(255,255,255,.14); }
+.light .ubuntu-button { background: rgba(0,0,0,.05); }
+.light .ubuntu-button:hover { background: rgba(0,0,0,.1); }
+
+.desktop-icon { width: 84px; padding: 8px 4px; border-radius: 10px; text-align: center; color: white; text-shadow: 0 1px 4px rgba(0,0,0,.85); }
+.desktop-icon:hover { background: rgba(255,255,255,.14); }
+
+.context-menu, .start-menu {
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  box-shadow: 0 18px 50px rgba(0,0,0,.4);
+  backdrop-filter: blur(30px);
+}
+
+.terminal-scroll::-webkit-scrollbar, .file-scroll::-webkit-scrollbar { width: 10px; }
+.terminal-scroll::-webkit-scrollbar-thumb, .file-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 10px; }
+
+@keyframes window-in {
+  from { transform: scale(.97) translateY(8px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
