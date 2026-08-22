@@ -62,17 +62,24 @@ npm run build
 
 This repository is configured for **Workers Static Assets** using `wrangler.jsonc`.
 
-### Cloudflare dashboard / GitHub integration
+### Recommended Cloudflare dashboard / GitHub integration settings
 
 1. Open Cloudflare Dashboard.
 2. Go to **Workers & Pages**.
-3. Create a Worker from a Git repository / connect GitHub.
+3. Create/import a Worker from GitHub.
 4. Select `Tdotcoperation/vibe-Linux`.
-5. Use the repository root as the root directory.
-6. Install command: `npm install`
-7. Build command: `npm run build`
-8. Deploy command: `npx wrangler deploy` or simply `npm run deploy` if the integration expects a single deploy command.
-9. Deploy.
+5. Root directory: repository root (`/`).
+6. Build command: `npm run build`
+7. Deploy command: `npx wrangler deploy`
+8. Deploy.
+
+Cloudflare may automatically use Bun for dependency installation. This repository also has a root `postinstall` build hook, so `dist/` is generated after dependency installation even when the Cloudflare Build command is left empty. The explicit Build command above is still the recommended configuration.
+
+If Cloudflare only gives you a single deploy-command field, use:
+
+```bash
+npm run deploy
+```
 
 The Wrangler configuration uploads `./dist` as Worker static assets and uses SPA fallback routing.
 
