@@ -10,8 +10,9 @@
 
 * { box-sizing: border-box; }
 html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; }
-button, input, textarea { font: inherit; }
+button, input, textarea, select { font: inherit; }
 button { -webkit-tap-highlight-color: transparent; }
+button:disabled { opacity: .35; cursor: default; }
 
 .desktop-root {
   --panel: rgba(28, 24, 32, .92);
@@ -66,9 +67,9 @@ button { -webkit-tap-highlight-color: transparent; }
 .resize-handle::after { content: ""; position: absolute; right: 4px; bottom: 4px; width: 8px; height: 8px; border-right: 2px solid rgba(255,255,255,.38); border-bottom: 2px solid rgba(255,255,255,.38); }
 
 .ubuntu-button { border: 1px solid var(--border); background: rgba(255,255,255,.07); transition: .14s ease; }
-.ubuntu-button:hover { background: rgba(255,255,255,.14); }
+.ubuntu-button:hover:not(:disabled) { background: rgba(255,255,255,.14); }
 .light .ubuntu-button { background: rgba(0,0,0,.05); }
-.light .ubuntu-button:hover { background: rgba(0,0,0,.1); }
+.light .ubuntu-button:hover:not(:disabled) { background: rgba(0,0,0,.1); }
 
 .desktop-icon { width: 84px; padding: 8px 4px; border-radius: 10px; text-align: center; color: white; text-shadow: 0 1px 4px rgba(0,0,0,.85); }
 .desktop-icon:hover { background: rgba(255,255,255,.14); }
@@ -80,8 +81,22 @@ button { -webkit-tap-highlight-color: transparent; }
   backdrop-filter: blur(30px);
 }
 
-.terminal-scroll::-webkit-scrollbar, .file-scroll::-webkit-scrollbar { width: 10px; }
-.terminal-scroll::-webkit-scrollbar-thumb, .file-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 10px; }
+.terminal-scroll::-webkit-scrollbar,
+.file-scroll::-webkit-scrollbar,
+.start-menu *::-webkit-scrollbar,
+.window-content *::-webkit-scrollbar { width: 9px; height: 9px; }
+.terminal-scroll::-webkit-scrollbar-thumb,
+.file-scroll::-webkit-scrollbar-thumb,
+.start-menu *::-webkit-scrollbar-thumb,
+.window-content *::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 10px; }
+
+.document-surface h1 { margin: 0 0 1rem; font-size: 2rem; line-height: 1.2; font-weight: 700; }
+.document-surface h2 { margin: 1.25rem 0 .75rem; font-size: 1.5rem; line-height: 1.3; font-weight: 700; }
+.document-surface h3 { margin: 1rem 0 .5rem; font-size: 1.2rem; font-weight: 700; }
+.document-surface p { margin: .55rem 0; }
+.document-surface ul { margin: .75rem 0; padding-left: 1.6rem; list-style: disc; }
+.document-surface ol { margin: .75rem 0; padding-left: 1.6rem; list-style: decimal; }
+.document-surface pre { white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
 
 @keyframes window-in {
   from { transform: scale(.97) translateY(8px); opacity: 0; }
